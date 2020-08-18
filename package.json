@@ -1,0 +1,46 @@
+{
+  "name": "liveframe",
+  "version": "1.0.2",
+  "description": "Client JS for LiveFrame.io Frame Capture SaaS",
+  "main": "dist/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src --out-dir dist",
+    "start": "npx babel src --watch --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liveframe/liveframe.git"
+  },
+  "keywords": [
+    "liveframe",
+    "webrtc",
+    "video",
+    "audio"
+  ],
+  "author": "LiveFrame.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liveframe/liveframe/issues"
+  },
+  "homepage": "https://github.com/liveframe/liveframe#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-runtime"
+    ]
+  }
+}
