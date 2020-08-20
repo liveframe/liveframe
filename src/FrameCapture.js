@@ -1,15 +1,18 @@
+const Pusher = require('pusher-js');
+
 class FrameCapture {
     _streamConnected = true;
     _isPaused = false;
     _streams = [];
     _running = false;
+    _endpoint = 'https://liveframe.io.test/api/rtc/saveImage';
 
     constructor(config) {
         this._bearer = config.token;
-        this._endpoint = config.endpoint;
-
-        this._interval = config.interval;
+        this._interval = config.interval ?? 1000;
         this.createCanvasElement();
+
+        this.connect();
     }
 
     createCanvasElement = () => {
@@ -83,6 +86,27 @@ class FrameCapture {
     }
     setTimeInterval = (interval) => {
         this._interval = interval;
+    }
+
+    connect() {
+        Pusher.Runtime.createXHR = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            return xhr;
+        };
+        let pusher = new Pusher('2e3b0ca7e12489ecc3a4', { 
+            cluster: 'us2',
+            authEndpoint: `https://liveframe.io.test/api/rtc/pusher/${this._bearer.substr(-10, 10)}`,
+            auth: {
+                headers: {
+                    'Authorization': 'Bearer ' + this._bearer,
+                    'Access-Control-Allow-Headers': '*',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            }
+        });
+        let channel = pusher.subscribe('presence-' + this._bearer.substr(-10, 10));
+        channel.bind('event', data => console.log(data));
     }
     // setStreamConnectedStatus = (callback, connected = false) => {
     //     this._streamConnected = connected;

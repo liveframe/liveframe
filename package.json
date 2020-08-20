@@ -42,5 +42,8 @@
       "@babel/plugin-proposal-class-properties",
       "@babel/plugin-transform-runtime"
     ]
+  },
+  "dependencies": {
+    "pusher-js": "^7.0.0"
   }
 }
