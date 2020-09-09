@@ -44,6 +44,7 @@
     ]
   },
   "dependencies": {
+    "eventemitter3": "^4.0.7",
     "pusher-js": "^7.0.0"
   }
 }

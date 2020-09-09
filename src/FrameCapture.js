@@ -1,4 +1,5 @@
 const Pusher = require('pusher-js');
+const EventEmitter = require('eventemitter3');
 
 class FrameCapture {
     _streamConnected = true;
@@ -11,8 +12,9 @@ class FrameCapture {
         this._bearer = config.token;
         this._interval = config.interval ?? 1000;
         this.createCanvasElement();
+        this.event = new EventEmitter();
 
-        this.connect();
+        // this.connect();
     }
 
     createCanvasElement = () => {
@@ -33,6 +35,8 @@ class FrameCapture {
     }
     start = () => {
         this._running = true;
+        this.emit('started');
+
         setInterval(() => {
             if (this._isPaused) return;
 
@@ -72,7 +76,7 @@ class FrameCapture {
             this._canvas.height = bitmap.height
 
             this._canvas.getContext('2d').drawImage(bitmap, 0, 0, this._canvas.width, this._canvas.height)
-            return this._canvas.toDataURL('image/jpeg', 1).split(',')[1]
+            return this._canvas.toDataURL('image/jpeg', 0.6).split(',')[1]
         });
     }
     pause = () => {
@@ -86,6 +90,10 @@ class FrameCapture {
     }
     setTimeInterval = (interval) => {
         this._interval = interval;
+    }
+
+    emit = event => {
+        this.event.emit(event);
     }
 
     connect() {
