@@ -17,7 +17,7 @@ class AudioCapture {
 
         document.body.appendChild(this._audio);
     }
-    attachStream = stream => {
+    addStream = stream => {
         this._audio.srcObject = stream;
         this._audio.onloadedmetadata = () => {
             this._audio.play();
