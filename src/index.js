@@ -11,21 +11,20 @@ class LiveFrame {
         this._options = config.options;
         this._token = config.token;
 
-        if (this._options.streams.includes('webcam', 'screenshare')) {
-            this.video = new Video({
-                token: config.token,
-                interval: config.options.interval.video,
-                // width: config.options.constraints.width,
-                quality: config.options.constraints.quality
-            });
-        }
+        this.video = new Video({
+            token: config.token,
+            streamable: this._options.streams,
+            interval: config.options.interval.video,
+            // width: config.options.constraints.width,
+            quality: config.options.constraints.quality
+        });
 
-        if (this._options.streams.includes('audio')) {
-            this.audio = new Audio({
-                token: config.token,
-                interval: config.options.interval.audio
-            });
-        }
+        let audioEnabled = this._options.streams.includes('audio') ? true : false;
+        this.audio = new Audio({
+            token: config.token,
+            enabled: audioEnabled,
+            interval: 5000//config.options.interval.audio
+        });
     }
     start() {
         fetch('https://liveframe.io.test/api/rtc/record', {

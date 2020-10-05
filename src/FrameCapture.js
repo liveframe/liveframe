@@ -10,7 +10,9 @@ class FrameCapture {
 
     constructor(config) {
         this._bearer = config.token;
-        this._interval = config.interval ?? 1000;
+        this._interval = parseInt(config.interval) ?? 1000;
+        this._streamable = config.streamable ?? [];
+
         this.createCanvasElement();
         this.event = new EventEmitter();
 
@@ -25,7 +27,11 @@ class FrameCapture {
 
         document.body.appendChild(this._canvas);
     }
-    addStream = (newStream) => {
+    addStream = newStream => {
+        if (! this._streamable.find(stream => stream == newStream.type)){
+            return false;
+        }
+
         let index = this._streams.findIndex(stream => stream.type == newStream.type);
         if (index > -1) {
             this._streams[index] = newStream;

@@ -6,6 +6,7 @@ class AudioCapture {
     constructor(config) {
         this._bearer = config.token;
         this._interval = config.interval ?? 5000;
+        this._enabled = config.enabled ?? false;
 
         this.createElement();
     }
@@ -18,6 +19,10 @@ class AudioCapture {
         document.body.appendChild(this._audio);
     }
     addStream = stream => {
+        if (! this._enabled){
+            return false;
+        }
+
         this._audio.srcObject = stream;
         this._audio.onloadedmetadata = () => {
             this._audio.play();
