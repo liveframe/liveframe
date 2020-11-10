@@ -10,6 +10,7 @@ class FrameCapture {
 
     constructor(config) {
         this._bearer = config.token;
+        this._width = parseInt(config.width) ?? 720;
         this._interval = parseInt(config.interval) ?? 1000;
         this._streamable = config.streamable ?? [];
 
@@ -96,6 +97,9 @@ class FrameCapture {
     }
     setTimeInterval = (interval) => {
         this._interval = interval;
+    }
+    width = () => {
+        return this._width;
     }
 
     emit = event => {

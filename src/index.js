@@ -15,7 +15,7 @@ class LiveFrame {
             token: config.token,
             streamable: this._options.streams,
             interval: config.options.interval.video,
-            // width: config.options.constraints.width,
+            width: config.options.constraints.width,
             quality: config.options.constraints.quality
         });
 
