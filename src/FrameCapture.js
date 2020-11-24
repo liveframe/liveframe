@@ -6,7 +6,7 @@ class FrameCapture {
     _isPaused = false;
     _streams = [];
     _running = false;
-    _endpoint = 'https://liveframe.io.test/api/rtc/saveImage';
+    _endpoint = 'https://liveframe.io/api/rtc/saveImage';
 
     constructor(config) {
         this._bearer = config.token;

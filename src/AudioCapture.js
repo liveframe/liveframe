@@ -1,7 +1,7 @@
 class AudioCapture {
     _running = false;
     _finished = false;
-    _endpoint = 'https://liveframe.io.test/api/rtc/saveAudio';
+    _endpoint = 'https://liveframe.io/api/rtc/saveAudio';
 
     constructor(config) {
         this._bearer = config.token;
@@ -71,6 +71,7 @@ class AudioCapture {
             var base64data = reader.result;
             let data = {
                 "blob": base64data,
+                "timestamp": Date.now(),
             }
 
             fetch(this._endpoint, {

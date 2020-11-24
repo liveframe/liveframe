@@ -27,7 +27,7 @@ class LiveFrame {
         });
     }
     start() {
-        fetch('https://liveframe.io.test/api/rtc/record', {
+        fetch('https://liveframe.io/api/rtc/record', {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + this._token,
@@ -51,7 +51,7 @@ class LiveFrame {
     stop() {
         if (this.video) this.video.stop();
         if (this.audio) this.audio.stop();
-        fetch(`https://liveframe.io.test/api/rtc/complete`, {
+        fetch(`https://liveframe.io/api/rtc/complete`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + this._token,
