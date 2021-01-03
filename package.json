@@ -1,5 +1,5 @@
 {
-  "name": "liveframe",
+  "name": "@liveframe/liveframe",
   "version": "1.0.0",
   "description": "Client JS for LiveFrame.io Frame Capture SaaS",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
     "audio"
   ],
   "author": "LiveFrame.io",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/liveframe/liveframe/issues"
   },
@@ -42,5 +42,6 @@
       "@babel/plugin-proposal-class-properties",
       "@babel/plugin-transform-runtime"
     ]
-  }
+  },
+  "dependencies": {}
 }
