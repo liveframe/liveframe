@@ -1,6 +1,6 @@
 {
   "name": "liveframe",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "Client JS for LiveFrame.io Frame Capture SaaS",
   "main": "dist/index.js",
   "directories": {
@@ -42,9 +42,5 @@
       "@babel/plugin-proposal-class-properties",
       "@babel/plugin-transform-runtime"
     ]
-  },
-  "dependencies": {
-    "eventemitter3": "^4.0.7",
-    "pusher-js": "^7.0.0"
   }
 }

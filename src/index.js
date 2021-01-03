@@ -6,12 +6,14 @@ const Audio = require('./AudioCapture.js').default;
 class LiveFrame {
     video = null;
     audio = null;
+    domain = 'https://liveframe.io';
 
     constructor(config) {
         this._options = config.options;
         this._token = config.token;
 
         this.video = new Video({
+            domain: this.domain,
             token: config.token,
             streamable: this._options.streams,
             interval: config.options.interval.video,
@@ -21,13 +23,14 @@ class LiveFrame {
 
         let audioEnabled = this._options.streams.includes('audio') ? true : false;
         this.audio = new Audio({
+            domain: this.domain,
             token: config.token,
             enabled: audioEnabled,
-            interval: 5000//config.options.interval.audio
+            interval: 5000 //config.options.interval.audio
         });
     }
     start() {
-        fetch('https://liveframe.io/api/rtc/record', {
+        fetch(`${this.domain}/api/rtc/record`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + this._token,
@@ -51,7 +54,7 @@ class LiveFrame {
     stop() {
         if (this.video) this.video.stop();
         if (this.audio) this.audio.stop();
-        fetch(`https://liveframe.io/api/rtc/complete`, {
+        fetch(`${this.domain}/api/rtc/complete`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + this._token,

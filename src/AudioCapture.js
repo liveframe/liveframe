@@ -1,10 +1,10 @@
 class AudioCapture {
     _running = false;
     _finished = false;
-    _endpoint = 'https://liveframe.io/api/rtc/saveAudio';
 
     constructor(config) {
         this._bearer = config.token;
+        this._endpoint = `${config.domain}/api/rtc/saveAudio`;
         this._interval = config.interval ?? 5000;
         this._enabled = config.enabled ?? false;
 
