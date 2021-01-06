@@ -36,7 +36,6 @@ class FrameCapture {
     }
     start = () => {
         this._running = true;
-        this.emit('started');
 
         setInterval(() => {
             if (this._isPaused) return;
@@ -94,10 +93,6 @@ class FrameCapture {
     }
     width = () => {
         return this._width;
-    }
-
-    emit = event => {
-        this.event.emit(event);
     }
 }
 
