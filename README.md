@@ -7,7 +7,7 @@ Send user streams to the LiveFrame service.
 Require the package using npm:
 
 ```bash
-npm install liveframe --save
+npm i @liveframe/liveframe
 ```
 
 ## Usage
